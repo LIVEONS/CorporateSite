@@ -73,6 +73,14 @@ function Header({ active = "" }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+  React.useEffect(() => {
+    if (!menu) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [menu]);
   const close = () => setMenu(false);
   return (
     <header className={"site-header" + (scrolled ? " scrolled" : "") + (onDark ? " on-dark" : "")}>
