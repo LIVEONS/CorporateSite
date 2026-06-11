@@ -18,6 +18,7 @@ function respond(int $status, array $payload): void
 function load_config(): array
 {
     $paths = [
+        __DIR__ . '/../../liveons-contact-config.php',
         __DIR__ . '/../liveons-contact-config.php',
         __DIR__ . '/contact.config.php',
     ];

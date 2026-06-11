@@ -24,7 +24,7 @@ Composerをサーバー上で使わない場合は、ローカルで生成した
 
 2. 設定ファイルを作成します。
 
-推奨配置は、公開ディレクトリ外です。
+推奨配置は、公開ディレクトリ外です。XServerで `public_html` を公開ディレクトリとして使う場合は、`public_html` と同じ階層に配置します。
 
 ```sh
 cp api/contact.config.example.php ../liveons-contact-config.php
@@ -35,7 +35,7 @@ cp api/contact.config.example.php ../liveons-contact-config.php
 - `turnstile_secret`: Cloudflare Turnstile Secret Key
 - `smtp.password`: 再発行後のSMTPパスワード
 
-公開ディレクトリ内へ置く場合は `api/contact.config.php` として配置できますが、公開ディレクトリ外への配置を推奨します。
+公開ディレクトリ内へ置く場合は `api/contact.config.php` として配置できますが、原則として公開ディレクトリ外への配置を推奨します。
 
 ### 現在の送信設定
 
