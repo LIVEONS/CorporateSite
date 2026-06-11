@@ -20,7 +20,7 @@ npm run dev
 composer install --no-dev
 ```
 
-Composerをサーバー上で使わない場合は、ローカルで生成した `vendor/` をアップロードしてください。
+本番では `public_html` と同じ階層へ `vendor/` を配置する構成を推奨します。Composerをサーバー上で使わない場合は、ローカルで生成した `vendor/` を公開ディレクトリ外へアップロードしてください。
 
 2. 設定ファイルを作成します。
 

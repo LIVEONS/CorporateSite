@@ -222,6 +222,7 @@ function auto_reply_body(array $data, string $from): string
 function load_mailer(): void
 {
     $paths = [
+        __DIR__ . '/../../vendor/autoload.php',
         __DIR__ . '/../vendor/autoload.php',
         __DIR__ . '/vendor/autoload.php',
     ];
