@@ -1,0 +1,228 @@
+/* =========================================================================
+   株式会社ライブオンズ コーポレートサイト — Design System
+   ミニマル × 大胆なタイポ × 余白 / 白基調 + パープル1アクセント
+   ========================================================================= */
+
+:root {
+  /* color */
+  --accent: #601986;
+  --accent-ink: #43115e;      /* hover / pressed */
+  --accent-soft: #f3e9f6;     /* tints */
+  --bg: #ffffff;
+  --bg-sub: #f5f5f7;
+  --ink: #1a1a1a;
+  --ink-2: #666666;
+  --ink-3: #9a9aa0;
+  --line: #e7e7ea;
+
+  /* type */
+  --jp: "Zen Kaku Gothic New", system-ui, sans-serif;
+  --latin: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  /* layout */
+  --maxw: 1200px;
+  --gutter: clamp(18px, 5vw, 64px);
+  --radius: 12px;
+
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--jp);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "palt" 1;
+  letter-spacing: .01em;
+  line-height: 1.85;
+  overflow-x: clip;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- layout helpers ---- */
+.wrap {
+  width: min(calc(100% - (var(--gutter) * 2)), calc(var(--maxw) - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+.section { padding-block: clamp(72px, 11vw, 150px); }
+.section--sub { background: var(--bg-sub); }
+
+/* eyebrow / section label (Latin) */
+.eyebrow {
+  font-family: var(--latin);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 1.5px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+/* headings */
+.h-xl { font-weight: 900; font-size: clamp(34px, 6vw, 72px); line-height: 1.08; letter-spacing: 0; margin: 0; }
+.h-lg { font-weight: 800; font-size: clamp(28px, 4.4vw, 50px); line-height: 1.18; letter-spacing: 0; margin: 0; }
+.h-md { font-weight: 700; font-size: clamp(21px, 2.4vw, 28px); line-height: 1.4; margin: 0; }
+.lede { font-size: clamp(16px, 1.5vw, 19px); color: var(--ink-2); line-height: 2; max-width: 60ch; text-wrap: pretty; }
+
+.latin { font-family: var(--latin); }
+
+/* ---- buttons ---- */
+.btn {
+  --bh: 54px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: var(--bh); padding-inline: 30px;
+  font-family: var(--jp); font-weight: 700; font-size: 15px; letter-spacing: .04em;
+  border-radius: 999px; border: 1.5px solid transparent;
+  cursor: pointer; transition: transform .2s var(--ease), background .2s var(--ease), color .2s, border-color .2s;
+  max-width: 100%; min-width: 0; text-align: center; white-space: nowrap;
+}
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--primary:hover { background: var(--accent-ink); transform: translateY(-2px); }
+.btn--dark { background: var(--ink); color: #fff; }
+.btn--dark:hover { transform: translateY(-2px); background: #000; }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
+.btn--sm { --bh: 44px; padding-inline: 22px; font-size: 14px; }
+.btn .arr { transition: transform .25s var(--ease); }
+.btn:hover .arr { transform: translateX(4px); }
+
+/* text link with arrow */
+.tlink {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 15px; color: var(--accent); letter-spacing: .02em;
+}
+.tlink .arr { transition: transform .25s var(--ease); }
+.tlink:hover .arr { transform: translateX(5px); }
+
+/* ---- reveal on scroll ---- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .16s; }
+.reveal.d3 { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+
+/* ---- image placeholder ---- */
+.ph {
+  position: relative; overflow: hidden;
+  background-color: #e9e9ee;
+  background-image: repeating-linear-gradient(135deg,
+    rgba(0,0,0,.045) 0 2px, transparent 2px 11px);
+  display: flex; align-items: center; justify-content: center;
+  color: #8a8a92;
+}
+.ph::after {
+  content: attr(data-label);
+  font-family: "Archivo", monospace;
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  padding: 7px 12px; border: 1px dashed #b6b6c0; border-radius: 6px;
+  background: rgba(255,255,255,.62); color: #76767e;
+  text-align: center; max-width: 80%;
+}
+.ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ph--image {
+  background: none;
+}
+.ph--image::after {
+  display: none;
+}
+.ph--dark { background-color: #1c1f24; background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 2px, transparent 2px 11px); }
+.ph--dark::after { background: rgba(0,0,0,.35); border-color: rgba(255,255,255,.25); color: rgba(255,255,255,.7); }
+
+@media (max-width: 600px) {
+  :root {
+    --gutter: clamp(18px, 5.2vw, 24px);
+    --radius: 10px;
+  }
+
+  body {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .section {
+    padding-block: 64px;
+  }
+
+  .eyebrow {
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    letter-spacing: .14em;
+  }
+
+  .eyebrow::before {
+    width: 22px;
+  }
+
+  .h-xl {
+    font-size: clamp(32px, 9vw, 42px);
+  }
+
+  .h-lg {
+    font-size: clamp(26px, 8vw, 36px);
+    line-height: 1.25;
+  }
+
+  .h-md {
+    font-size: clamp(20px, 6vw, 24px);
+  }
+
+  .lede {
+    font-size: 15px;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
+  }
+
+  .btn {
+    --bh: 50px;
+    min-height: var(--bh);
+    height: auto;
+    padding: 12px 20px;
+    font-size: 14px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .ph::after {
+    max-width: calc(100% - 28px);
+    padding: 6px 8px;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: .08em;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .btn {
+    padding-inline: 16px;
+  }
+}
